@@ -33,7 +33,7 @@ sources:
   - https://link-to-primary-source
 ```
 
-**Standards:** every entry needs at least one public source; use `user-reported` status for accounts not independently confirmed; write neutrally — this is a record, not a scorecard. The build validates required fields and fails the PR if any are missing.
+**Standards:** every entry needs at least one public source; use `user-reported` status for accounts not independently confirmed; write neutrally — this is a record, not a scorecard. The build validates required fields and fails the PR if any are missing. **No exploit code:** entries must not include working exploit code, payloads, or proof-of-concept scripts — describe the failure mode and link to sources. This is a record for defenders.
 
 The site rebuilds automatically on every merge (GitHub Actions). No API keys, no external services, no cost.
 
