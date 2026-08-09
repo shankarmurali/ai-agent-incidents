@@ -1,0 +1,18 @@
+id: 2025-003
+date: 2025-05-22
+title: GitLab Duo manipulated via prompt-injected issue titles
+system: GitLab Duo
+vendor: GitLab
+category: prompt-injection-manipulation
+status: confirmed by researchers, mitigated
+autonomy: Low — assistant summarizing project content
+failure_mode: >
+  Issue titles were passed directly into the model's context, allowing crafted
+  titles to manipulate Duo's behavior and outputs for other users viewing the
+  project.
+impact: Cross-user manipulation of AI assistant output inside a dev platform.
+lessons:
+  - Any user-writable field that reaches a model context is an injection vector
+  - Multi-tenant AI features let one user's content shape another user's AI output
+sources:
+  - https://www.securance.com/blog/prompt-injection-the-owasp-1-ai-threat-in-2026/

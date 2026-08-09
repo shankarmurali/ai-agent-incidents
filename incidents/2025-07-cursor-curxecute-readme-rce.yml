@@ -1,0 +1,18 @@
+id: 2025-002
+date: 2025-07-29
+title: "CurXecute: RCE in Cursor IDE via prompt-injected README"
+system: Cursor IDE AI assistant
+vendor: Cursor (Anysphere)
+category: prompt-injection-code-execution
+status: confirmed (CVE-2025-54135, CVSS 9.8, patched)
+autonomy: Medium — coding agent with local command execution
+failure_mode: >
+  Malicious prompts hidden in a repository's README were interpreted as
+  instructions when a developer opened the project, causing the AI assistant
+  to execute arbitrary commands on the developer's machine.
+impact: Remote code execution on developer workstations from untrusted repos.
+lessons:
+  - Repo content is untrusted input to coding agents, same as user input
+  - Developer machines hold credentials — coding-agent compromise is credential compromise
+sources:
+  - https://www.securance.com/blog/prompt-injection-the-owasp-1-ai-threat-in-2026/

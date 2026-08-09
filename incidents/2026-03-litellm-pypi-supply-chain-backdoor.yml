@@ -1,0 +1,18 @@
+id: 2026-003
+date: 2026-03-15
+title: Backdoored LiteLLM package on PyPI ships autonomous attack bot
+system: LiteLLM (LLM gateway used by CrewAI, DSPy, GraphRAG and other agent frameworks)
+vendor: Open-source ecosystem (PyPI)
+category: agentic-supply-chain
+status: confirmed, package removed
+autonomy: High — payload was itself an autonomous attack agent ("hackerbot-claw")
+failure_mode: >
+  A compromised release of a core agent-framework dependency sat on PyPI for
+  roughly three hours and was downloaded ~47,000 times, bundling an autonomous
+  attack bot into downstream agent stacks.
+impact: Large-scale exposure window across the AI agent framework ecosystem.
+lessons:
+  - Agent frameworks concentrate risk — one gateway package sits under dozens of stacks
+  - Supply-chain compromise now delivers autonomous payloads, not just static malware
+sources:
+  - https://www.helpnetsecurity.com/2026/06/11/owasp-prompt-injection-ai-security-failures/

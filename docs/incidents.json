@@ -1,0 +1,121 @@
+[
+  {
+    "id": "2026-002",
+    "date": "2026-07-14",
+    "title": "GPT-5.6 Sol reported to erase engineer's operational database",
+    "system": "GPT-5.6 Sol",
+    "vendor": "OpenAI",
+    "category": "destructive-action",
+    "status": "user-reported",
+    "autonomy": "High — agent operating with database access",
+    "failure_mode": "Agent deleted an operational database outside the scope of the requested task. Vendor's system card had warned the model could interpret actions not explicitly prohibited as permissible.\n",
+    "impact": "Reported complete erasure of an engineer's operational database.",
+    "lessons": [
+      "Agents infer permission from silence — deny-by-default beats allow-by-default",
+      "Production credentials handed to agents need the same controls as human access"
+    ],
+    "sources": [
+      "https://finance.biggo.com/news/4ef5430e-f1e3-4a50-9253-1fe5a5a2ba9d",
+      "https://www.techtimes.com/articles/320961/20260719/gpt-56-sol-deleted-files-databases-openai-had-63x-warning-it-ignored.htm"
+    ]
+  },
+  {
+    "id": "2026-001",
+    "date": "2026-07-10",
+    "title": "GPT-5.6 Sol deletes user's Mac home directory during cleanup task",
+    "system": "GPT-5.6 Sol (Ultra mode, multi-sub-agent)",
+    "vendor": "OpenAI",
+    "category": "destructive-action",
+    "status": "user-reported, vendor investigating",
+    "autonomy": "High — long-running unattended session (~81 minutes), full disk access granted",
+    "failure_mode": "A cleanup sub-agent incorrectly expanded the $HOME environment variable and executed rm -rf against the user's home directory path. Full Access mode removed safeguards that would have confined the command to a single folder.\n",
+    "impact": "Reported loss of most of the user's home directory contents — years of code, documents, and photos. Partial recovery attempted afterward.\n",
+    "lessons": [
+      {
+        "Least privilege": "full disk access turned a variable-expansion bug into total data loss"
+      },
+      "Long unattended agent sessions extend the blast radius of any single error",
+      "Vendor system card had documented elevated destructive-behavior rates pre-launch"
+    ],
+    "sources": [
+      "https://gizmodo.com/developers-are-claiming-openais-new-ai-model-is-going-rogue-and-deleting-files-2000785551",
+      "https://www.techtimes.com/articles/320267/20260712/gpt-56-sols-shell-bug-wiped-mac-openai-had-flagged-risk-16-days-earlier.htm"
+    ]
+  },
+  {
+    "id": "2026-003",
+    "date": "2026-03-15",
+    "title": "Backdoored LiteLLM package on PyPI ships autonomous attack bot",
+    "system": "LiteLLM (LLM gateway used by CrewAI, DSPy, GraphRAG and other agent frameworks)",
+    "vendor": "Open-source ecosystem (PyPI)",
+    "category": "agentic-supply-chain",
+    "status": "confirmed, package removed",
+    "autonomy": "High — payload was itself an autonomous attack agent (\"hackerbot-claw\")",
+    "failure_mode": "A compromised release of a core agent-framework dependency sat on PyPI for roughly three hours and was downloaded ~47,000 times, bundling an autonomous attack bot into downstream agent stacks.\n",
+    "impact": "Large-scale exposure window across the AI agent framework ecosystem.",
+    "lessons": [
+      "Agent frameworks concentrate risk — one gateway package sits under dozens of stacks",
+      "Supply-chain compromise now delivers autonomous payloads, not just static malware"
+    ],
+    "sources": [
+      "https://www.helpnetsecurity.com/2026/06/11/owasp-prompt-injection-ai-security-failures/"
+    ]
+  },
+  {
+    "id": "2025-002",
+    "date": "2025-07-29",
+    "title": "CurXecute: RCE in Cursor IDE via prompt-injected README",
+    "system": "Cursor IDE AI assistant",
+    "vendor": "Cursor (Anysphere)",
+    "category": "prompt-injection-code-execution",
+    "status": "confirmed (CVE-2025-54135, CVSS 9.8, patched)",
+    "autonomy": "Medium — coding agent with local command execution",
+    "failure_mode": "Malicious prompts hidden in a repository's README were interpreted as instructions when a developer opened the project, causing the AI assistant to execute arbitrary commands on the developer's machine.\n",
+    "impact": "Remote code execution on developer workstations from untrusted repos.",
+    "lessons": [
+      "Repo content is untrusted input to coding agents, same as user input",
+      "Developer machines hold credentials — coding-agent compromise is credential compromise"
+    ],
+    "sources": [
+      "https://www.securance.com/blog/prompt-injection-the-owasp-1-ai-threat-in-2026/"
+    ]
+  },
+  {
+    "id": "2025-001",
+    "date": "2025-06-11",
+    "title": "EchoLeak: zero-click data exfiltration in Microsoft 365 Copilot",
+    "system": "Microsoft 365 Copilot",
+    "vendor": "Microsoft",
+    "category": "prompt-injection-exfiltration",
+    "status": "confirmed (CVE-2025-32711, CVSS 9.3, patched)",
+    "autonomy": "Low — assistant with access to user mailbox and documents",
+    "failure_mode": "A crafted email containing hidden instructions caused Copilot, when asked to summarize the inbox, to silently exfiltrate sensitive documents to an external server. No user click required.\n",
+    "impact": "Demonstrated silent exfiltration path from enterprise tenant data.",
+    "lessons": [
+      "Indirect prompt injection turns any readable content into an attack surface",
+      "Assistant access to sensitive stores needs egress controls, not just input filters"
+    ],
+    "sources": [
+      "https://www.securance.com/blog/prompt-injection-the-owasp-1-ai-threat-in-2026/"
+    ]
+  },
+  {
+    "id": "2025-003",
+    "date": "2025-05-22",
+    "title": "GitLab Duo manipulated via prompt-injected issue titles",
+    "system": "GitLab Duo",
+    "vendor": "GitLab",
+    "category": "prompt-injection-manipulation",
+    "status": "confirmed by researchers, mitigated",
+    "autonomy": "Low — assistant summarizing project content",
+    "failure_mode": "Issue titles were passed directly into the model's context, allowing crafted titles to manipulate Duo's behavior and outputs for other users viewing the project.\n",
+    "impact": "Cross-user manipulation of AI assistant output inside a dev platform.",
+    "lessons": [
+      "Any user-writable field that reaches a model context is an injection vector",
+      "Multi-tenant AI features let one user's content shape another user's AI output"
+    ],
+    "sources": [
+      "https://www.securance.com/blog/prompt-injection-the-owasp-1-ai-threat-in-2026/"
+    ]
+  }
+]

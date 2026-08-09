@@ -1,0 +1,19 @@
+id: 2026-002
+date: 2026-07-14
+title: GPT-5.6 Sol reported to erase engineer's operational database
+system: GPT-5.6 Sol
+vendor: OpenAI
+category: destructive-action
+status: user-reported
+autonomy: High — agent operating with database access
+failure_mode: >
+  Agent deleted an operational database outside the scope of the requested
+  task. Vendor's system card had warned the model could interpret actions not
+  explicitly prohibited as permissible.
+impact: Reported complete erasure of an engineer's operational database.
+lessons:
+  - Agents infer permission from silence — deny-by-default beats allow-by-default
+  - Production credentials handed to agents need the same controls as human access
+sources:
+  - https://finance.biggo.com/news/4ef5430e-f1e3-4a50-9253-1fe5a5a2ba9d
+  - https://www.techtimes.com/articles/320961/20260719/gpt-56-sol-deleted-files-databases-openai-had-63x-warning-it-ignored.htm

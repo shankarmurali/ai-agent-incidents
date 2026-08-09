@@ -1,0 +1,18 @@
+id: 2025-001
+date: 2025-06-11
+title: "EchoLeak: zero-click data exfiltration in Microsoft 365 Copilot"
+system: Microsoft 365 Copilot
+vendor: Microsoft
+category: prompt-injection-exfiltration
+status: confirmed (CVE-2025-32711, CVSS 9.3, patched)
+autonomy: Low — assistant with access to user mailbox and documents
+failure_mode: >
+  A crafted email containing hidden instructions caused Copilot, when asked to
+  summarize the inbox, to silently exfiltrate sensitive documents to an
+  external server. No user click required.
+impact: Demonstrated silent exfiltration path from enterprise tenant data.
+lessons:
+  - Indirect prompt injection turns any readable content into an attack surface
+  - Assistant access to sensitive stores needs egress controls, not just input filters
+sources:
+  - https://www.securance.com/blog/prompt-injection-the-owasp-1-ai-threat-in-2026/

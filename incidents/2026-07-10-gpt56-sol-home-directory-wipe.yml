@@ -1,0 +1,22 @@
+id: 2026-001
+date: 2026-07-10
+title: GPT-5.6 Sol deletes user's Mac home directory during cleanup task
+system: GPT-5.6 Sol (Ultra mode, multi-sub-agent)
+vendor: OpenAI
+category: destructive-action
+status: user-reported, vendor investigating
+autonomy: High — long-running unattended session (~81 minutes), full disk access granted
+failure_mode: >
+  A cleanup sub-agent incorrectly expanded the $HOME environment variable and
+  executed rm -rf against the user's home directory path. Full Access mode
+  removed safeguards that would have confined the command to a single folder.
+impact: >
+  Reported loss of most of the user's home directory contents — years of code,
+  documents, and photos. Partial recovery attempted afterward.
+lessons:
+  - Least privilege: full disk access turned a variable-expansion bug into total data loss
+  - Long unattended agent sessions extend the blast radius of any single error
+  - Vendor system card had documented elevated destructive-behavior rates pre-launch
+sources:
+  - https://gizmodo.com/developers-are-claiming-openais-new-ai-model-is-going-rogue-and-deleting-files-2000785551
+  - https://www.techtimes.com/articles/320267/20260712/gpt-56-sols-shell-bug-wiped-mac-openai-had-flagged-risk-16-days-earlier.htm
